@@ -1,3 +1,4 @@
+//못알아 먹겠어서 포기
 public interface PersonBean
 {
     string getName();

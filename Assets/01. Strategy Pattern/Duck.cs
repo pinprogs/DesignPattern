@@ -1,79 +1,101 @@
 using UnityEngine;
 
-public abstract class Duck
+namespace StrategyPattern
 {
-    protected FlyBehavior flyBehavior;
-    protected QuackBehavior quackBehavior;
-
-    public Duck()
+    public abstract class Duck
     {
-        //비엇슴
+        protected FlyBehavior flyBehavior;
+        protected QuackBehavior quackBehavior;
+
+        public Duck()
+        {
+            //비엇슴
+        }
+
+        public abstract void display();
+
+        public void setFlyBehavior(FlyBehavior fb)
+        {
+            flyBehavior = fb;
+        }
+
+        public void performFly()
+        {
+            flyBehavior.fly();
+        }
+
+        public void setQuackBehavior(QuackBehavior qb)
+        {
+            quackBehavior = qb;
+        }
+
+        public void performQuack()
+        {
+            quackBehavior.quack();
+        }
+
+        //ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ
+        public void swin()
+        {
+            Debug.Log("모든 오리는 물에 뜹니다. 가짜 오리도 뜨죠.");
+        }
     }
 
-    public abstract void display();
-    public void performFly()
+    public interface FlyBehavior
     {
-        flyBehavior.fly();
+        public void fly();
     }
 
-    public void performQuack()
+    public class FlyWithWings : FlyBehavior
     {
-        quackBehavior.quack();
+        public void fly()
+        {
+            Debug.Log("날고 있다는");
+        }
     }
 
-    //ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ
-    public void swin()
+    public class FlyNoWay : FlyBehavior
     {
-        Debug.Log("모든 오리는 물에 뜹니다. 가짜 오리도 뜨죠.");
+        public void fly()
+        {
+            Debug.Log("난 못날아..");
+        }
     }
-}
 
-public interface FlyBehavior
-{
-    public void fly();
-}
-
-public class FlyWithWings : FlyBehavior
-{
-    public void fly()
+    public class FlyRocketPowered : FlyBehavior
     {
-        Debug.Log("날고 있다는");
+        public void fly()
+        {
+            Debug.Log("이 오리는 로켓추진으로 날아갑니다.");
+        }
     }
-}
 
-public class FlyNoWay : FlyBehavior
-{
-    public void fly()
+    public interface QuackBehavior
     {
-        Debug.Log("난 못날아..");
+        public void quack();
     }
-}
 
-public interface QuackBehavior
-{
-    public void quack();
-}
-
-public class Quack : QuackBehavior
-{
-    public void quack()
+    public class Quack : QuackBehavior
     {
-        Debug.Log("꽤애애애액!!!!!!!!!!");
+        public void quack()
+        {
+            Debug.Log("꽤애애애액!!!!!!!!!!");
+        }
     }
-}
 
-public class MuteQuack : QuackBehavior
-{
-    public void quack()
+    public class MuteQuack : QuackBehavior
     {
-        Debug.Log("~~조용~~...");
+        public void quack()
+        {
+            Debug.Log("~~조용~~...");
+        }
     }
-}
 
-public class Squeak : QuackBehavior
-{
-    public void quack()
+    public class Squeak : QuackBehavior
     {
-        Debug.Log("쀽");
+        public void quack()
+        {
+            Debug.Log("쀽");
+        }
     }
 }
